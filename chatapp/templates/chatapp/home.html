@@ -2,16 +2,23 @@
 {% block title%}  Home page  {% endblock %}
 
 
-{% block content %}
-    <form action="" method="POST">
-        {% if error %}
-            {{error}}
+{% block body %}
 
-        {% endif %}    
+    <div class="container col-4" style="margin-top:100px; border:1px solid grey;padding: 15px; ">
+
+        {% if errors %}
+
+        votre mot de passe ou votre nom utilisateur n'existe pas dans notre base de donnée
+        {% endif %}
+        <h3  style="margin:10px 50px;">Formulaire de connexion</h3>
+    <form method="POST" action="" >
         {% csrf_token %}
-        <input type="text" placeholder="Votre nom utilisateur..." name="username">
-        <input type="text" placeholder="Votre mot de passe..." name="password">
-        <input type="submit">
-    </form>
 
+        <input type="text" name="username" placeholder="Votre nom ...">
+        <input type="password" name="password" placeholder="Votre mot de passe ...">
+        <input type="submit" value="submit">
+        <a href="{% url 'logout_view' %}">Deconnexion</a>
+    </form>
+        
 {% endblock %}
+

@@ -1,0 +1,32 @@
+{% extends "chatapp/layout.html" %}
+{% block title %} Message box  {% endblock %}
+
+
+{% block body %}
+    {% for etudiant in etudiants %}
+        <h1>{{ etudiant.user.username}}</h1>
+        <hr>
+        <div>
+            {{ etudiant.message}}
+
+                
+            {% if 1 %}
+                <a href="{% url 'delete' etudiant.id %}">Supprimer</a>
+            {% endif %}
+            {{request.user.id}}-{{etudiant.user.id}}
+
+            <hr>
+          
+        </div>
+        
+
+    {% endfor %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <textarea autofocus cols="30" rows="5" placeholder="Ecrivez un message" name="message">
+
+        </textarea>
+      <input type="submit" value="Envoyez ">
+    </form>
+
+{% endblock %}
